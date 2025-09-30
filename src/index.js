@@ -5,7 +5,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
-// app.use('/', console.log('hi!'));
+app.use('/', () => {
+    console.log('hi!');
+});
 
 app.listen(PORT, () => {
     console.log(`server is running om port ${PORT}`);
