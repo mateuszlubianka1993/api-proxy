@@ -4,6 +4,7 @@ import cors from "cors";
 import expressLayouts from "express-ejs-layouts";
 import dashboardRoutes from "./routes/dashboard.js";
 import newsRoutes from "./routes/newsRoutes.js";
+import authRoutes from "./routes/auth.js";
 import whitelist from "./config/cors-whitelist.js";
 
 const app = express();
@@ -29,10 +30,13 @@ app.set("view engine", "ejs");
 app.set("views", path.join(process.cwd(), "src/views"));
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static(path.join(process.cwd(), 'src/public')));
+
 app.use(expressLayouts);
 app.set("layout", "layout");
 
 app.use("/news", newsRoutes);
 app.use('/dashboard', dashboardRoutes);
+app.use(authRoutes);
 
 export default app;
