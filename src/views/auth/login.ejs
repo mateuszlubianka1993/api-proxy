@@ -3,6 +3,13 @@
     <h1>API Proxy</h1>
     <input id="emailInput" type="email" name="email" placeholder="Email" />
     <input id="passwordInput" type="password" name="password" placeholder="Password" />
+    <% if (errors && errors.length > 0) { %>
+      <ul class="error-list">
+        <% errors.forEach(err => { %>
+          <li><%= err %></li>
+        <% }) %>
+      </ul>
+    <% } %>
     <button type="submit">Login</button>
     <a href="#">Forgot password?</a>
   </form>
