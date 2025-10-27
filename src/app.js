@@ -1,4 +1,6 @@
 import express from "express";
+import session from "express-session";
+import cookieParser from "cookie-parser";
 import path from "path";
 import cors from "cors";
 import expressLayouts from "express-ejs-layouts";
@@ -26,17 +28,27 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(
+  session({
+    secret: "superSecretKey",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 }
+  })
+);
+
 app.set("view engine", "ejs");
 app.set("views", path.join(process.cwd(), "src/views"));
-app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(process.cwd(), 'src/public')));
+app.use(express.static(path.join(process.cwd(), "src/public")));
 
 app.use(expressLayouts);
 app.set("layout", "layout");
 
-app.use("/news", newsRoutes);
-app.use('/dashboard', dashboardRoutes);
-app.use(authRoutes);
+app.use("/", authRoutes);
+app.use("/dashboard", dashboardRoutes);
+// app.use("/news", newsRoutes);
 
 export default app;
