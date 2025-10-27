@@ -1,9 +1,9 @@
 <div class="loginPage">
-  <div class="loginPage__card">
+  <form method="POST" action="/login" class="loginPage__card">
     <h1>API Proxy</h1>
-    <input id="emailInput" type="email" placeholder="Email" />
-    <input id="passwordInput" type="password" placeholder="Password" />
-    <button onclick="window.location='/dashboard'">Login</button>
+    <input id="emailInput" type="email" name="email" placeholder="Email" />
+    <input id="passwordInput" type="password" name="password" placeholder="Password" />
+    <button type="submit">Login</button>
     <a href="#">Forgot password?</a>
-  </div>
+  </form>
 </div>
