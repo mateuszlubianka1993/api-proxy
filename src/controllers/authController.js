@@ -1,3 +1,5 @@
+import { validateLoginData } from "../helpers/validators.js";
+
 // Mock user
 const USER = {
   email: "admin@example.com",
@@ -8,25 +10,30 @@ export const getLogin = (req, res) => {
     res.render("auth/login", {
 		path: "/login",
 		title: "Login Page",
-		error: null
+		errors: []
 	});
 };
 
 export const postLogin = (req, res) => {
 	const {email, password} = req.body;
 
+	const errors = validateLoginData({email, password});
+
+	if (errors.length > 0) {
+		return res.render("auth/login", { title: "Login Page", errors });
+	}
+
 	if (email === USER.email && password === USER.password) {
-		console.log("1111");
 		req.session.user = email;
 
 		return res.redirect("/dashboard");
 	}
 
-	res.render("auth/login", { title: "Login Page", error: "Invalid credentials" });
+	res.render("auth/login", { title: "Login Page", errors: ["Invalid credentials"] });
 };
 
 export const logout = (req, res) => {
 	req.session.destroy(() => {
-		res.render("auth/login", { title: "Login Page" });
+		res.render("auth/login", { title: "Login Page", errors: [] });
 	});
 };

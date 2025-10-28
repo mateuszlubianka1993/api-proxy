@@ -70,6 +70,19 @@ body .layoutContainer {
 .loginPage__card a:hover {
   color: #2980b9;
 }
+.loginPage__card .error-list {
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  font-weight: 500;
+  text-align: left;
+  border-radius: 8px;
+  padding: 0.75rem;
+  list-style: none;
+  margin: 1rem 0;
+}
+.loginPage__card .error-list li {
+  font-size: 0.9rem;
+}
 
 @media (max-width: 600px) {
   .loginPage {
