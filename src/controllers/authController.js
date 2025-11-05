@@ -33,7 +33,13 @@ export const postLogin = (req, res) => {
 };
 
 export const logout = (req, res) => {
-	req.session.destroy(() => {
-		res.render("auth/login", { title: "Login Page", errors: [] });
+	req.session.destroy((err) => {
+
+		if (err) {
+			console.error("Session destroy error:", err);
+			return res.redirect("/dashboard");
+		}
+
+		res.redirect("/login");
 	});
 };
