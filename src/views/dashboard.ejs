@@ -1,1 +1,21 @@
-<div>Dashboard <a href="/logout">Logout</a></div>
+<div class="dashboardPage">
+  <!-- <div>Dashboard <a href="/logout">Logout</a></div> -->
+
+  <h1><%= title %></h1>
+  <p class="dashboardPage__welcome">Welcome, <strong><%= user %></strong></p>
+
+  <section class="apiList">
+    <% if (apiConfigs && apiConfigs.length > 0) { %>
+			<% apiConfigs.forEach(api => { %>
+				<div class="apiList__item <%= api.status === 'active' ? 'active' : 'inactive' %>">
+					<h2><%= api.name %></h2>
+					<p><%= api.description %></p>
+					<p><strong>Whitelist:</strong> <%= api.whitelist.join(', ') %></p>
+          <span class="status <%= api.status %>"><%= api.status %></span>
+				</div>
+			<% }) %>
+    <% } else { %>
+			<p>No APIs configured yet.</p>
+		<% } %>
+  </section>
+</div>

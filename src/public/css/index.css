@@ -1,3 +1,10 @@
+@charset "UTF-8";
+/* ===== PRIMARY COLORS ===== */
+/* ===== NEUTRAL & BASE COLORS ===== */
+/* ===== GRADIENTS ===== */
+/* ===== ERROR & ALERT COLORS ===== */
+/* ===== STATUS COLORS ===== */
+/* ===== TEXT COLORS ===== */
 *,
 *::before,
 *::after {
@@ -35,14 +42,14 @@ body .layoutContainer {
   text-align: center;
 }
 .loginPage__card h1 {
-  color: #333;
+  color: #333333;
   margin-bottom: 1rem;
 }
 .loginPage__card input {
   width: 100%;
   padding: 0.75rem;
   margin-bottom: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   border-radius: 6px;
   background: #f5f5f5;
 }
@@ -113,6 +120,109 @@ body .layoutContainer {
 @media (max-width: 360px) {
   .loginPage__card {
     padding: 0.5rem;
+  }
+}
+.dashboardPage {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  color: #333333;
+}
+.dashboardPage h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #111827;
+  text-align: center;
+}
+.dashboardPage__welcome {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.dashboardPage .apiList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 2rem;
+}
+.dashboardPage .apiList__item {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  width: calc(50% - 1rem);
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dashboardPage .apiList__item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.dashboardPage .apiList__item h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  color: #111827;
+}
+.dashboardPage .apiList__item p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 0.4rem;
+  color: #4b5563;
+}
+.dashboardPage .apiList__item strong {
+  color: #111827;
+}
+.dashboardPage .apiList__item .status {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.dashboardPage .apiList__item.active .status {
+  background: #d1fae5;
+  color: #065f46;
+}
+.dashboardPage .apiList__item.inactive .status {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* 📱 Mobile */
+@media (max-width: 768px) {
+  .dashboardPage {
+    padding: 0.5rem;
+    margin: 0;
+  }
+  .dashboardPage h1 {
+    font-size: 1.5rem;
+  }
+  .dashboardPage .apiList {
+    flex-direction: column;
+    align-items: center;
+  }
+  .dashboardPage .apiList__item {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+  }
+  .dashboardPage .apiList__item h2 {
+    font-size: 1.1rem;
+  }
+  .dashboardPage .apiList__item p {
+    font-size: 0.85rem;
+  }
+  .dashboardPage .apiList__item .status {
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.7rem;
   }
 }
 

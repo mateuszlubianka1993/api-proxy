@@ -1,6 +1,4 @@
-@import "./variables/_colors.scss";
-@import "./variables/spacing";
-@import "./variables/globals";
-@import "./reset.scss";
-@import "./layout";
-@import "./views/login.scss";
+@use "./reset";
+@use "./layout";
+@use "./views/login";
+@use "./views/dashboard";
