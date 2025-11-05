@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "News API",
+    "baseUrl": "https://newsapi.org/v2",
+    "description": "Provides latest headlines and news articles",
+    "whitelist": ["https://mateuszlubianka1993.github.io/news-app"],
+    "status": "active"
+  },
+  {
+    "id": 2,
+    "name": "Weather API",
+    "baseUrl": "https://api.open-meteo.com",
+    "description": "Delivers weather forecasts and current conditions",
+    "whitelist": ["https://myweatherapp.com"],
+    "status": "inactive"
+  }
+]

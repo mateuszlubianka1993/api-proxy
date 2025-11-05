@@ -1,16 +1,36 @@
+/* ===== PRIMARY COLORS ===== */
 $color-primary: #3498db;
 $color-primary-hover: #2980b9;
 $color-secondary: #2ecc71;
+$color-secondary-hover: #27ae60;
+
+/* ===== NEUTRAL & BASE COLORS ===== */
 $color-background: #f5f5f5;
+$color-surface: #ffffff;
+$color-border: #e5e7eb;
 
 $color-white: #ffffff;
 $color-black: #000000;
-$color-gray-light: #ddd;
-$color-gray: #999;
-$color-text: #333;
+$color-gray-light: #dddddd;
+$color-gray: #999999;
+$color-text: #333333;
 
+/* ===== GRADIENTS ===== */
 $gradient-main: linear-gradient(135deg, $color-primary, $color-secondary);
 
+/* ===== ERROR & ALERT COLORS ===== */
 $error-color: #dc2626;
 $error-text-color: #b91c1c;
 $error-border-color: #fca5a5;
+
+/* ===== STATUS COLORS ===== */
+$status-active-bg: #d1fae5;
+$status-active-text: #065f46;
+$status-inactive-bg: #fee2e2;
+$status-inactive-text: #991b1b;
+
+/* ===== TEXT COLORS ===== */
+$text-primary: #111827;
+$text-secondary: #4b5563;
+$text-light: #6b7280;
+
