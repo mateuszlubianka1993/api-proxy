@@ -94,6 +94,7 @@ body .layoutContainer {
 @media (max-width: 600px) {
   .loginPage {
     padding: 0.5rem;
+    align-items: flex-start;
   }
   .loginPage__card {
     padding: 1rem;
@@ -194,6 +195,21 @@ body .layoutContainer {
   background: #fee2e2;
   color: #991b1b;
 }
+.dashboardPage__btnPrimary {
+  display: inline-block;
+  margin-top: 1rem;
+  background: #3498db;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+.dashboardPage__btnPrimary:hover {
+  background: #2980b9;
+}
 
 /* 📱 Mobile */
 @media (max-width: 768px) {
@@ -223,6 +239,69 @@ body .layoutContainer {
     top: 0.75rem;
     right: 0.75rem;
     font-size: 0.7rem;
+  }
+  .dashboardPage__btnPrimary {
+    display: block;
+  }
+}
+.addApiPage {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.addApiPage__title {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #333333;
+}
+.addApiPage__errorList {
+  background: #fca5a5;
+  padding: 0.5rem;
+  border-radius: 6px;
+  color: #b91c1c;
+  margin-bottom: 1rem;
+}
+.addApiPage__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.addApiPage__form_label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.addApiPage__form_input, .addApiPage__form_select, .addApiPage__form_textarea {
+  padding: 0.5rem;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.addApiPage__form_input:focus, .addApiPage__form_select:focus, .addApiPage__form_textarea:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+}
+.addApiPage__form_btn {
+  background: #3498db;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+.addApiPage__form_btn:hover {
+  background: #2980b9;
+}
+
+@media (max-width: 768px) {
+  .addApiPage {
+    padding: 1rem;
+    margin: 1rem;
   }
 }
 .mainHeader {

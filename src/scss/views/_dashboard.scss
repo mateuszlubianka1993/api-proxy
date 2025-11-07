@@ -82,6 +82,23 @@
       }
     }
   }
+
+  &__btnPrimary {
+    display: inline-block;
+    margin-top: $padding-medium;
+    background: $color-primary;
+    color: $color-white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: $radius-small;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: $color-primary-hover;
+    }
+  }
 }
 
 /* 📱 Mobile */
@@ -117,6 +134,10 @@
           font-size: 0.7rem;
         }
       }
+    }
+    
+    &__btnPrimary {
+      display: block;
     }
   }
 }
