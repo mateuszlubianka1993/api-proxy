@@ -1,0 +1,52 @@
+<div class="addApiPage">
+  <h1 class="addApiPage__title"><%= title %></h1>
+
+  <% if (errors && errors.length > 0) { %>
+		<ul class="addPiPage__errorList">
+			<% errors.forEach(error => { %>
+				<li class="addApiPage__errorList_error"><%= error %></li>
+			<% }) %>
+		</ul>
+	<% } %>
+
+	<form action="/dashboard/new" method="post" class="addApiPage__form">
+		<label for="name" class="addApiPage__form_label">API Name</label>
+		<input
+			class="addApiPage__form_input"
+			type="text"
+			id="name"
+			name="name"
+			placeholder="e.g. Weather API"
+			value="<%= formData.name || '' %>"
+			required
+		>
+
+		<label for="url" class="addApiPage__form_label">Base URL</label>
+		<input
+			class="addApiPage__form_input"
+			type="text"
+			id="url"
+			name="url"
+			placeholder="https://api.example.com"
+			value="<%= formData.url || '' %>"
+			required
+		>
+
+		<label class="addApiPage__form_label" for="status">Status</label>
+    <select class="addApiPage__form_select" id="status" name="status">
+      <option value="active" <%= formData.status === 'active' ? 'selected' : '' %>>Active</option>
+      <option value="inactive" <%= formData.status === 'inactive' ? 'selected' : '' %>>Inactive</option>
+    </select>
+
+		<label class="addApiPage__form_label" for="whitelist">Whitelist Domains (comma separated)</label>
+    <textarea
+			class="addApiPage__form_textarea"
+			id="whitelist"
+			name="whitelist"
+			rows="3"
+			placeholder="https://example.com, https://myapp.net"
+		><%= formData.whitelist || '' %></textarea>
+
+		<button class="addApiPage__form_btn" type="submit" class="btn-primary">Add API</button>
+	</form>
+</div>
