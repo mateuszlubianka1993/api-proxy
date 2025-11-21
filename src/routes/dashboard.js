@@ -1,11 +1,12 @@
 import express from "express";
-import { showDashboard, showAddApiForm, addApi } from "../controllers/dashboardController.js";
+import { showDashboard, showAddApiForm, addApi, deleteApi } from "../controllers/dashboardController.js";
 import { isLogged } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
 router.get("/", isLogged, showDashboard);
 router.get("/new", isLogged, showAddApiForm);
-router.post('/new', addApi);
+router.post("/new", isLogged, addApi);
+router.post("/delete/:id", isLogged, deleteApi);
 
 export default router;

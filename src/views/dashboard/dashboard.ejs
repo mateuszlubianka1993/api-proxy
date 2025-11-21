@@ -11,6 +11,10 @@
 					<p><%= api.description %></p>
 					<p><strong>Whitelist:</strong> <%= api.whitelist.join(', ') %></p>
           <span class="status <%= api.status %>"><%= api.status %></span>
+
+					<form action="/dashboard/delete/<%= api.id %>" method="POST">
+						<button type="submit" id="deleteBtn" class="apiList__item_deleteBtn">Delete</button>
+					</form>
 				</div>
 			<% }) %>
     <% } else { %>
@@ -20,3 +24,8 @@
 
 	<a href="/dashboard/new" class="dashboardPage__btnPrimary">+ Add New API</a>
 </div>
+
+<%- include("../partials/deleteModal") %>
+<%- include("../partials/deleteToast") %>
+
+<script src="/js/dashboard.js"></script>
