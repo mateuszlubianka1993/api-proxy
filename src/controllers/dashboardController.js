@@ -53,3 +53,16 @@ export const addApi = (req, res) => {
 
   res.redirect("/dashboard");
 };
+
+export const deleteApi = (req, res) => {
+  const { id } = req.params;
+
+  const data = fs.readFileSync(dataPath, "utf-8");
+  let apiConfigs = JSON.parse(data);
+
+  apiConfigs = apiConfigs.filter(api => api.id !== Number(id));
+
+  fs.writeFileSync(dataPath, JSON.stringify(apiConfigs, null, 2));
+
+  res.redirect("/dashboard?deleted=true");
+};
