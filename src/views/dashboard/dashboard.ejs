@@ -12,8 +12,9 @@
 					<p><strong>Whitelist:</strong> <%= api.whitelist.join(', ') %></p>
           <span class="status <%= api.status %>"><%= api.status %></span>
 
-					<form action="/dashboard/delete/<%= api.id %>" method="POST">
+					<form class="apiList__item_actions" action="/dashboard/delete/<%= api.id %>" method="POST">
 						<button type="submit" id="deleteBtn" class="apiList__item_deleteBtn">Delete</button>
+						<a href="/dashboard/edit/<%= api.id %>" class="apiList__item_editBtn">Edit</a>
 					</form>
 				</div>
 			<% }) %>
