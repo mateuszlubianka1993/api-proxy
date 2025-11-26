@@ -82,8 +82,12 @@
         color: $status-inactive-text;
       }
 
-      &_deleteBtn {
-        background: $error-color;
+      &_actions {
+        display: flex;
+        gap: 0.75rem;
+      }
+
+      &_deleteBtn, &_editBtn {
         color: $color-white;
         border: none;
         border-radius: $radius-small;
@@ -91,9 +95,23 @@
         cursor: pointer;
         font-weight: 600;
         transition: background 0.2s ease;
+      }
+
+      &_deleteBtn {
+        background: $error-color;
 
         &:hover {
           background: color.adjust($error-color, $lightness: -10%);
+        }
+      }
+
+      &_editBtn {
+        display: block;
+        text-decoration: none;
+        background: $color-primary;
+
+        &:hover {
+          background: color.adjust($color-primary, $lightness: -10%);
         }
       }
     }

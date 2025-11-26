@@ -1,11 +1,7 @@
-import fs from "fs";
-import path from "path";
-
-const dataPath = path.join(process.cwd(), "src", "data", "apiConfigs.json");
+import { readApiConfigs, writeApiConfigs } from "../helpers/dataService.js";
 
 export const showDashboard = (req, res) => {
-  const data = fs.readFileSync(dataPath, "utf-8");
-  const apiConfigs = JSON.parse(data);
+  let apiConfigs = readApiConfigs();
 
   res.render("dashboard/dashboard", {
     title: "Dashboard",
@@ -22,10 +18,10 @@ export const showAddApiForm = (req, res) => {
 };
 
 export const addApi = (req, res) => {
-  const { name, url, status, whitelist } = req.body;
+  const { name, baseUrl, status, whitelist } = req.body;
   const errors = [];
 
-  if (!name || !url) {
+  if (!name || !baseUrl) {
     errors.push("Name and URL are required");
   }
 
@@ -37,19 +33,18 @@ export const addApi = (req, res) => {
     });
   }
 
-  const data = fs.readFileSync(dataPath, "utf-8");
-  const apiConfigs = JSON.parse(data);
+  let apiConfigs = readApiConfigs();
 
   const newApi = {
     id: apiConfigs.length ? apiConfigs[apiConfigs.length - 1].id + 1 : 1,
     name,
-    url,
+    baseUrl,
     status: status || "inactive",
     whitelist: whitelist ? whitelist.split(",").map(w => w.trim()) : []
   };
 
   apiConfigs.push(newApi);
-  fs.writeFileSync(dataPath, JSON.stringify(apiConfigs, null, 2));
+  writeApiConfigs(apiConfigs);
 
   res.redirect("/dashboard");
 };
@@ -57,12 +52,68 @@ export const addApi = (req, res) => {
 export const deleteApi = (req, res) => {
   const { id } = req.params;
 
-  const data = fs.readFileSync(dataPath, "utf-8");
-  let apiConfigs = JSON.parse(data);
+  let apiConfigs = readApiConfigs();
 
   apiConfigs = apiConfigs.filter(api => api.id !== Number(id));
 
-  fs.writeFileSync(dataPath, JSON.stringify(apiConfigs, null, 2));
+  writeApiConfigs(apiConfigs);
 
   res.redirect("/dashboard?deleted=true");
+};
+
+export const showEditApiForm = (req, res) => {
+  const { id } = req.params;
+
+  let apiConfigs = readApiConfigs();
+
+  const api = apiConfigs.find(el => el.id === Number(id));
+
+  if (!api) {
+    return res.redirect("/dashboard");
+  }
+
+  res.render("dashboard/editForm", {
+    title: "Edit API",
+    errors: [],
+    formData: api
+  });
+};
+
+export const updateApi = (req, res) => {
+  const { id } = req.params;
+  const { name, baseUrl, status, whitelist } = req.body;
+
+  const errors = [];
+
+  if (!name || !baseUrl) {
+    errors.push("Name and URL are required");
+  }
+
+  if (errors.length > 0) {
+    return res.render("dashboard/editForm", {
+      title: "Edit Api",
+      errors,
+      formData: req.body
+    });
+  }
+
+  let apiConfigs = readApiConfigs();
+
+  const index = apiConfigs.findIndex(a => a.id === Number(id));
+
+  if (index === -1) {
+    return res.redirect("/dashboard");
+  }
+
+  apiConfigs[index] = {
+    ...apiConfigs[index],
+    name,
+    baseUrl,
+    status,
+    whitelist: whitelist ? whitelist.split(",").map(w => w.trim()) : []
+  };
+
+  writeApiConfigs(apiConfigs);
+
+  res.redirect("/dashboard");
 };
